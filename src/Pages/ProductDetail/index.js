@@ -1,3 +1,4 @@
+//el datelle de cada producto
 import { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 const ProductDetail = () => {

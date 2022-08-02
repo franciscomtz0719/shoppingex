@@ -1,3 +1,4 @@
+//Vamos a pintar todos los productos
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import Aside1 from '../../Components/Aside1'
