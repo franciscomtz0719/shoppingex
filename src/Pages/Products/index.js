@@ -3,13 +3,14 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 const Products = ({ hasAsides }) => {
-  const [products, setProducts] = useState()
+  const [products, setProducts] = useState({})
+ 
   useEffect(() => {
     const getProducts = async () => {
       let data = await fetch('https://shoppingcart-53af7-default-rtdb.firebaseio.com/.json')
       data = await data.json()
+     
       setProducts(data)
-      console.log(products)
     }
     getProducts()
   }, [])
@@ -23,11 +24,9 @@ const Products = ({ hasAsides }) => {
               title,
               price,
               description,
-              category,
               image,
-              rating,
               id
-            } = product
+            } = products[product]
             return (
               <div className='col'>
                 <Link to={`/product-detail/${id}/test`}>

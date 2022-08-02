@@ -11,7 +11,7 @@ import {
 } from 'reactstrap'
 import { Link, Routes, Route } from 'react-router-dom'
 import Publicaciones from './Pages/Carrito'
-import NuevaPublicacion from './Pages/NuevoProducto'
+import NuevoProducto from './Pages/AgregarProducto'
 import Products from './Pages/Products'
 import ProductDetail from './Pages/ProductDetail'
 
@@ -29,18 +29,18 @@ function App () {
   return (
     <div className='App'>
       <Navbar expand='md' color='dark' container='xl' dark>
-        <NavbarBrand href='/'>Productos</NavbarBrand>
+        <NavbarBrand href='/'>BookMarket</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className='me-auto' navbar>
             <NavItem>
-              <Link to='/publicaciones' className='nav-link'>Agregar Productos</Link>
+              <Link to='/nuevo-producto' className='nav-link'> Agregar productos </Link>
             </NavItem>
             <NavItem>
-              <Link to='/nueva-publicacion' className='nav-link'> Historial de compras </Link>
+              <Link to='/products' className='nav-link'> Productos </Link>
             </NavItem>
             <NavItem>
-              <Link to='/products' className='nav-link'>Carrito de compras </Link>
+              <Link to='/publicaciones' className='nav-link'> Historial de compras</Link>
             </NavItem>
           </Nav>
         </Collapse>
@@ -50,7 +50,7 @@ function App () {
           <Routes>
             <Route path='/' element={<h1>bienvenido a nuestra app</h1>} />
             <Route path='/publicaciones' element={<Publicaciones />} />
-            <Route path='/nueva-publicacion' element={<NuevaPublicacion />} />
+            <Route path='/nuevo-producto' element={<NuevoProducto />} />
             <Route path='/products' element={<Products hasAsides={true} />} />
             <Route
               path='/product-detail/:id/:category'
