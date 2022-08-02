@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import logo from './logo.svg'
 import './App.css'
 import {
   Collapse,
@@ -30,24 +29,18 @@ function App () {
   return (
     <div className='App'>
       <Navbar expand='md' color='dark' container='xl' dark>
-        <NavbarBrand href='/'>reactstrap</NavbarBrand>
+        <NavbarBrand href='/'>Productos</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className='me-auto' navbar>
             <NavItem>
-              <Link to='/publicaciones' className='nav-link'>
-                Publicaciones
-              </Link>
+              <Link to='/publicaciones' className='nav-link'>Agregar Productos</Link>
             </NavItem>
             <NavItem>
-              <Link to='/nueva-publicacion' className='nav-link'>
-                Nueva Publicación
-              </Link>
+              <Link to='/nueva-publicacion' className='nav-link'> Historial de compras </Link>
             </NavItem>
             <NavItem>
-              <Link to='/products' className='nav-link'>
-                Productos
-              </Link>
+              <Link to='/products' className='nav-link'>Carrito de compras </Link>
             </NavItem>
           </Nav>
         </Collapse>
