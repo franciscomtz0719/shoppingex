@@ -2,9 +2,10 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
-const Products = ({ hasAsides }) => {
+const Products = ({}) => {
   const [products, setProducts] = useState({})
   const [contador, setContador] = useState(0)
+  const [purshasedProduct, setPurshasedProduct] = useState({})
 
   useEffect(() => {
     const getProducts = async () => {
@@ -14,6 +15,16 @@ const Products = ({ hasAsides }) => {
       setProducts(data)
     }
     getProducts()
+  }, [])
+
+  useEffect(() =>{
+    const postPurshaseOrder = async (data) =>{
+      setPurshasedProduct(data)
+      let result = await fetch('https://shoppingcart-53af7-default-rtdb.firebaseio.com/ordenCompra/.json',{
+        method: 'POST',
+        body:  JSON.stringify(data)
+      })
+    }  
   }, [])
 
   return (
@@ -39,7 +50,7 @@ const Products = ({ hasAsides }) => {
                     </div>
                   </Link>
                   <div className='d-flex align-items-end'>
-                    <button className='btn btn-success'>Agregar al carrito</button>
+                    <button className='btn btn-success' onClick={postPurshaseOrder(...product, contador)}>Agregar al carrito</button>
                     <div className='ms-5'>
                       <div className='text-center'><p className='text-center'>{contador}</p></div>
                       <button className='btn btn-primary w-50' onClick={() => setContador(contador + 1)}>+</button>

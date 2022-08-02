@@ -14,6 +14,7 @@ import Publicaciones from './Pages/Carrito'
 import NuevoProducto from './Pages/AgregarProducto'
 import Products from './Pages/Products'
 import ProductDetail from './Pages/ProductDetail'
+import Carrito from './Pages/Carrito'
 
 function App () {
   const [isOpen, setIsOpen] = useState(false)
@@ -42,6 +43,9 @@ function App () {
             <NavItem>
               <Link to='/publicaciones' className='nav-link'> Historial de compras</Link>
             </NavItem>
+            <NavItem>
+              <Link to='/carrito' className='nav-link'> Carrito de compras</Link>
+            </NavItem>
           </Nav>
         </Collapse>
       </Navbar>
@@ -52,6 +56,7 @@ function App () {
             <Route path='/publicaciones' element={<Publicaciones />} />
             <Route path='/nuevo-producto' element={<NuevoProducto />} />
             <Route path='/products' element={<Products hasAsides={true} />} />
+            <Route path='/carrito' element={<Carrito/>} />
             <Route
               path='/product-detail/:id'
               element={<ProductDetail />}
