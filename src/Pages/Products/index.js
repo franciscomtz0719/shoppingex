@@ -7,7 +7,7 @@ const Products = ({ hasAsides }) => {
  
   useEffect(() => {
     const getProducts = async () => {
-      let data = await fetch('https://shoppingcart-53af7-default-rtdb.firebaseio.com/.json')
+      let data = await fetch('https://shoppingcart-53af7-default-rtdb.firebaseio.com/productos/.json')
       data = await data.json()
      
       setProducts(data)
@@ -17,21 +17,21 @@ const Products = ({ hasAsides }) => {
 
   return (
     <>
-      <div className='col-12 col-md-6'>
-        <div className='row row-cols-1 row-cols-md-2 g-4'>
+      <div className='col-12'>
+        <div className='row row-cols-1 row-cols-md-4 g-4'>
           {Object.keys(products).map(product => {
             const {
               title,
               price,
               description,
-              image,
+              photo,
               id
             } = products[product]
             return (
               <div className='col'>
                 <Link to={`/product-detail/${id}/test`}>
                   <div className='card'>
-                    <img src={image} className='card-img-top' alt='...' />
+                    <img src={photo} className='card-img-top' alt='...' />
                     <div className='card-body'>
                       <h5 className='card-title'>{title}</h5>
                       <h5 className='card-title'>{price}</h5>
