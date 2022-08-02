@@ -1,25 +1,73 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react'
+import logo from './logo.svg'
+import './App.css'
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink
+} from 'reactstrap'
+import { Link, Routes, Route } from 'react-router-dom'
+import Publicaciones from './Pages/Publicaciones'
+import NuevaPublicacion from './Pages/NuevaPublicacion'
+import Products from './Pages/Products'
+import ProductDetail from './Pages/ProductDetail'
 
-function App() {
+function App () {
+  const [isOpen, setIsOpen] = useState(false)
+  const [selectedRoute, setSelectedRoute] = useState('')
+  const toggle = () => setIsOpen(!isOpen)
+
+  const linkHandler = event => {
+    const route = event.target.name
+    setSelectedRoute(route)
+    console.log(route)
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <Navbar expand='md' color='dark' container='xl' dark>
+        <NavbarBrand href='/'>reactstrap</NavbarBrand>
+        <NavbarToggler onClick={toggle} />
+        <Collapse isOpen={isOpen} navbar>
+          <Nav className='me-auto' navbar>
+            <NavItem>
+              <Link to='/publicaciones' className='nav-link'>
+                Publicaciones
+              </Link>
+            </NavItem>
+            <NavItem>
+              <Link to='/nueva-publicacion' className='nav-link'>
+                Nueva Publicación
+              </Link>
+            </NavItem>
+            <NavItem>
+              <Link to='/products' className='nav-link'>
+                Productos
+              </Link>
+            </NavItem>
+          </Nav>
+        </Collapse>
+      </Navbar>
+      <div className='container-fluid'>
+        <div className='row'>
+          <Routes>
+            <Route path='/' element={<h1>bienvenido a nuestra app</h1>} />
+            <Route path='/publicaciones' element={<Publicaciones />} />
+            <Route path='/nueva-publicacion' element={<NuevaPublicacion />} />
+            <Route path='/products' element={<Products hasAsides={true} />} />
+            <Route
+              path='/product-detail/:id/:category'
+              element={<ProductDetail />}
+            />
+          </Routes>
+        </div>
+      </div>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
