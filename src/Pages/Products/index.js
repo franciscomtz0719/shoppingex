@@ -1,3 +1,4 @@
+//Vamos a pintar todos los productos
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
