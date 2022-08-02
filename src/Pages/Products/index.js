@@ -4,12 +4,13 @@ import { Link } from 'react-router-dom'
 
 const Products = ({ hasAsides }) => {
   const [products, setProducts] = useState({})
- 
+  const [contador, setContador] = useState(0)
+
   useEffect(() => {
     const getProducts = async () => {
       let data = await fetch('https://shoppingcart-53af7-default-rtdb.firebaseio.com/productos/.json')
       data = await data.json()
-     
+
       setProducts(data)
     }
     getProducts()
@@ -24,21 +25,28 @@ const Products = ({ hasAsides }) => {
               title,
               price,
               description,
-              photo,
-              id
+              photo
             } = products[product]
             return (
               <div className='col'>
-                <Link to={`/product-detail/${id}/test`}>
-                  <div className='card'>
+                <div className='card'>
+                  <Link to={`/product-detail/${product}`}>
                     <img src={photo} className='card-img-top' alt='...' />
                     <div className='card-body'>
                       <h5 className='card-title'>{title}</h5>
                       <h5 className='card-title'>{price}</h5>
                       <p className='card-text'>{description}</p>
                     </div>
+                  </Link>
+                  <div className='d-flex align-items-end'>
+                    <button className='btn btn-success'>Agregar al carrito</button>
+                    <div className='ms-5'>
+                      <div className='text-center'><p className='text-center'>{contador}</p></div>
+                      <button className='btn btn-primary w-50' onClick={() => setContador(contador + 1)}>+</button>
+                      <button className='btn btn-secondary' onClick={() => setContador(contador - 1)}>-</button>
+                    </div>
                   </div>
-                </Link>
+                </div>
               </div>
             )
           })}

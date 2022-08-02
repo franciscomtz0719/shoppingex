@@ -53,7 +53,7 @@ function App () {
             <Route path='/nuevo-producto' element={<NuevoProducto />} />
             <Route path='/products' element={<Products hasAsides={true} />} />
             <Route
-              path='/product-detail/:id/:category'
+              path='/product-detail/:id'
               element={<ProductDetail />}
             />
           </Routes>
