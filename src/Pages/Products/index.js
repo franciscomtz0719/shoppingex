@@ -2,10 +2,10 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
-const Products = ({}) => {
+const Products = ({addProduct}) => {
   const [products, setProducts] = useState({})
-  const [contador, setContador] = useState(0)
-  const [purshasedProduct, setPurshasedProduct] = useState({})
+  const [cantidad, setCantidad] = useState(0)
+  
 
   useEffect(() => {
     const getProducts = async () => {
@@ -17,15 +17,11 @@ const Products = ({}) => {
     getProducts()
   }, [])
 
-  useEffect(() =>{
-    const postPurshaseOrder = async (data) =>{
-      setPurshasedProduct(data)
-      let result = await fetch('https://shoppingcart-53af7-default-rtdb.firebaseio.com/ordenCompra/.json',{
-        method: 'POST',
-        body:  JSON.stringify(data)
-      })
-    }  
-  }, [])
+  
+
+  const agregarCantidad = event =>{
+setCantidad(event.target.value)
+  }
 
   return (
     <>
@@ -50,11 +46,10 @@ const Products = ({}) => {
                     </div>
                   </Link>
                   <div className='d-flex align-items-end'>
-                    <button className='btn btn-success' onClick={postPurshaseOrder(...product, contador)}>Agregar al carrito</button>
+                    <button className='btn btn-success' onClick={()=>addProduct({...products[product], cantidad})}>Agregar al carrito</button>
                     <div className='ms-5'>
-                      <div className='text-center'><p className='text-center'>{contador}</p></div>
-                      <button className='btn btn-primary w-50' onClick={() => setContador(contador + 1)}>+</button>
-                      <button className='btn btn-secondary' onClick={() => setContador(contador - 1)}>-</button>
+                      <div className='text-center'></div>
+                      <input type='number' className='form-control' onChange={agregarCantidad} />
                     </div>
                   </div>
                 </div>
